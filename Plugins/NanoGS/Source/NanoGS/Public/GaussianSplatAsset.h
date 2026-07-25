@@ -64,6 +64,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gaussian Splatting|Nanite")
 	bool IsNaniteEnabled() const { return bEnableNanite; }
 
+	/** True when this asset was imported from a COLMAP sparse points3D.bin file. */
+	UFUNCTION(BlueprintCallable, Category = "Gaussian Splatting")
+	bool IsPointCloudAsset() const { return bIsPointCloudAsset; }
+
 #if WITH_EDITOR
 	/**
 	 * Generate a thumbnail image from raw splat data and store it in ThumbnailTexture.
@@ -176,6 +180,10 @@ public:
 	/** Quality level used during import */
 	UPROPERTY(VisibleAnywhere, Category = "Import")
 	EGaussianQualityLevel ImportQuality = EGaussianQualityLevel::Medium;
+
+	/** Whether this asset represents a sparse point cloud rather than trained Gaussians. */
+	UPROPERTY(VisibleAnywhere, Category = "Import")
+	bool bIsPointCloudAsset = false;
 
 	/**
 	 * Whether Nanite-style LOD and culling is enabled for this asset

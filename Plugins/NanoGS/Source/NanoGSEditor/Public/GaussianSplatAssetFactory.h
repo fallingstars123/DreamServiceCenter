@@ -11,7 +11,7 @@
 class UGaussianSplatAsset;
 
 /**
- * Factory for importing PLY files as Gaussian Splat assets
+ * Factory for importing Gaussian PLY and COLMAP sparse point-cloud files.
  */
 UCLASS(hidecategories = Object)
 class NANOGSEDITOR_API UGaussianSplatAssetFactory : public UFactory, public FReimportHandler
@@ -63,5 +63,24 @@ private:
 		FName InName,
 		EObjectFlags Flags,
 		UGaussianSplatAsset* ExistingAsset = nullptr
+	);
+
+	UGaussianSplatAsset* ImportCOLMAPPointsFile(
+		const FString& FilePath,
+		UObject* InParent,
+		FName InName,
+		EObjectFlags Flags,
+		UGaussianSplatAsset* ExistingAsset = nullptr
+	);
+
+	UGaussianSplatAsset* CreateAssetFromSplatData(
+		const FString& FilePath,
+		UObject* InParent,
+		FName InName,
+		EObjectFlags Flags,
+		TArray<FGaussianSplatData>& SplatData,
+		int32 DetectedSHBands,
+		bool bIsPointCloud,
+		UGaussianSplatAsset* ExistingAsset
 	);
 };

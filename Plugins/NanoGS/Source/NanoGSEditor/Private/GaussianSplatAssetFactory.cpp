@@ -3,6 +3,7 @@
 #include "GaussianSplatAssetFactory.h"
 #include "GaussianSplatAsset.h"
 #include "PLYFileReader.h"
+#include "COLMAPPointsReader.h"
 #include "EditorFramework/AssetImportData.h"
 #include "Misc/FeedbackContext.h"
 #include "Misc/ScopedSlowTask.h"
@@ -16,12 +17,18 @@ UGaussianSplatAssetFactory::UGaussianSplatAssetFactory()
 	SupportedClass = UGaussianSplatAsset::StaticClass();
 
 	Formats.Add(TEXT("ply;PLY Gaussian Splatting File"));
+	Formats.Add(TEXT("bin;COLMAP Sparse Point Cloud (points3D.bin)"));
 }
 
 bool UGaussianSplatAssetFactory::FactoryCanImport(const FString& Filename)
 {
 	const FString Extension = FPaths::GetExtension(Filename);
-	return Extension.Equals(TEXT("ply"), ESearchCase::IgnoreCase) && FPLYFileReader::IsValidPLYFile(Filename);
+	if (Extension.Equals(TEXT("ply"), ESearchCase::IgnoreCase))
+	{
+		return FPLYFileReader::IsValidPLYFile(Filename);
+	}
+	return Extension.Equals(TEXT("bin"), ESearchCase::IgnoreCase) &&
+		FCOLMAPPointsReader::IsValidPointsFile(Filename);
 }
 
 UObject* UGaussianSplatAssetFactory::FactoryCreateFile(
@@ -36,7 +43,10 @@ UObject* UGaussianSplatAssetFactory::FactoryCreateFile(
 {
 	bOutOperationCanceled = false;
 
-	UGaussianSplatAsset* NewAsset = ImportPLYFile(Filename, InParent, InName, Flags, nullptr);
+	const bool bIsCOLMAP = FPaths::GetExtension(Filename).Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	UGaussianSplatAsset* NewAsset = bIsCOLMAP
+		? ImportCOLMAPPointsFile(Filename, InParent, InName, Flags, nullptr)
+		: ImportPLYFile(Filename, InParent, InName, Flags, nullptr);
 
 	if (!NewAsset)
 	{
@@ -100,18 +110,15 @@ EReimportResult::Type UGaussianSplatAssetFactory::Reimport(UObject* Obj)
 	// Use the original quality level
 	QualityLevel = Asset->ImportQuality;
 
-	UGaussianSplatAsset* ReimportedAsset = ImportPLYFile(
-		Asset->SourceFilePath,
-		Asset->GetOuter(),
-		Asset->GetFName(),
-		Asset->GetFlags(),
-		Asset
-	);
+	const bool bIsCOLMAP = FPaths::GetExtension(Asset->SourceFilePath).Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	UGaussianSplatAsset* ReimportedAsset = bIsCOLMAP
+		? ImportCOLMAPPointsFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset)
+		: ImportPLYFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset);
 
 	if (ReimportedAsset)
 	{
 		// If Nanite was enabled before reimport, rebuild the cluster hierarchy
-		if (bWasNaniteEnabled)
+		if (bWasNaniteEnabled && !bIsCOLMAP)
 		{
 			UE_LOG(LogTemp, Log, TEXT("Reimport: Rebuilding Nanite cluster hierarchy (was enabled before reimport)"));
 			if (!ReimportedAsset->BuildNaniteClusterHierarchy())
@@ -150,8 +157,46 @@ UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportPLYFile(
 
 	UE_LOG(LogTemp, Log, TEXT("Read %d splats from PLY file (SH bands: %d)"), SplatData.Num(), DetectedSHBands);
 
+	return CreateAssetFromSplatData(
+		FilePath, InParent, InName, Flags, SplatData, DetectedSHBands, false, ExistingAsset);
+}
+
+UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportCOLMAPPointsFile(
+	const FString& FilePath,
+	UObject* InParent,
+	FName InName,
+	EObjectFlags Flags,
+	UGaussianSplatAsset* ExistingAsset)
+{
+	FScopedSlowTask SlowTask(100.0f, FText::FromString(TEXT("Importing COLMAP Sparse Point Cloud...")));
+	SlowTask.MakeDialog(true);
+	SlowTask.EnterProgressFrame(35.0f, FText::FromString(TEXT("Reading points3D.bin...")));
+
+	TArray<FGaussianSplatData> SplatData;
+	FString ErrorMessage;
+	if (!FCOLMAPPointsReader::ReadPointsFile(FilePath, SplatData, ErrorMessage))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to read COLMAP points3D.bin: %s"), *ErrorMessage);
+		return nullptr;
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Read %d sparse points from COLMAP points3D.bin"), SplatData.Num());
+	SlowTask.EnterProgressFrame(65.0f, FText::FromString(TEXT("Creating point-cloud asset...")));
+	return CreateAssetFromSplatData(
+		FilePath, InParent, InName, Flags, SplatData, 0, true, ExistingAsset);
+}
+
+UGaussianSplatAsset* UGaussianSplatAssetFactory::CreateAssetFromSplatData(
+	const FString& FilePath,
+	UObject* InParent,
+	FName InName,
+	EObjectFlags Flags,
+	TArray<FGaussianSplatData>& SplatData,
+	int32 DetectedSHBands,
+	bool bIsPointCloud,
+	UGaussianSplatAsset* ExistingAsset)
+{
 	// Create or reuse asset
-	SlowTask.EnterProgressFrame(10.0f, FText::FromString(TEXT("Creating asset...")));
 
 	UGaussianSplatAsset* Asset = ExistingAsset;
 	if (!Asset)
@@ -167,12 +212,10 @@ UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportPLYFile(
 
 	// Store source file path
 	Asset->SourceFilePath = FilePath;
+	Asset->bIsPointCloudAsset = bIsPointCloud;
 
 	// Set the detected SH band count BEFORE initializing (CompressSH uses this)
 	Asset->SHBands = DetectedSHBands;
-
-	// Initialize asset from splat data (NO cluster building - user enables Nanite via Asset Actions)
-	SlowTask.EnterProgressFrame(55.0f, FText::FromString(TEXT("Compressing splat data...")));
 
 	Asset->InitializeFromSplatData(SplatData, QualityLevel);
 
@@ -182,7 +225,8 @@ UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportPLYFile(
 	// Mark package dirty
 	Asset->MarkPackageDirty();
 
-	UE_LOG(LogTemp, Log, TEXT("Successfully imported Gaussian Splat asset: %d splats, %lld bytes (Nanite disabled by default)"),
+	UE_LOG(LogTemp, Log, TEXT("Successfully imported %s asset: %d points, %lld bytes (Nanite disabled by default)"),
+		bIsPointCloud ? TEXT("COLMAP point cloud") : TEXT("Gaussian Splat"),
 		Asset->GetSplatCount(), Asset->GetMemoryUsage());
 
 	return Asset;

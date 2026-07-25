@@ -52,6 +52,8 @@ class FGaussianSplatCalcViewDataCS : public FGlobalShader
 		SHADER_PARAMETER(uint32, UseSHRendering)   // 1 = use view-dependent SH evaluation
 		SHADER_PARAMETER(float, OpacityScale)
 		SHADER_PARAMETER(float, SplatScale)
+		SHADER_PARAMETER(uint32, RenderMode)
+		SHADER_PARAMETER(float, PointSize)
 		SHADER_PARAMETER(uint32, GlobalBaseOffset)  // Offset into global ViewDataBuffer (non-compaction global path)
 		// Global compaction path: GPU prefix-sum offsets
 		SHADER_PARAMETER_SRV(StructuredBuffer<uint>, GlobalBaseOffsetsBuffer)  // prefix sums per proxy

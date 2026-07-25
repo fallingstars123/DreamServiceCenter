@@ -10,6 +10,13 @@
 class UGaussianSplatAsset;
 class FGaussianSplatSceneProxy;
 
+UENUM(BlueprintType)
+enum class EGaussianSplatRenderMode : uint8
+{
+	Gaussian	UMETA(DisplayName = "Gaussian"),
+	PointCloud	UMETA(DisplayName = "Point Cloud")
+};
+
 /**
  * Component for rendering Gaussian Splatting assets in the scene
  */
@@ -72,6 +79,15 @@ public:
 	/** Scale multiplier for splat sizes */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gaussian Splatting|Rendering", meta = (ClampMin = "0.1", ClampMax = "10.0"))
 	float SplatScale = 1.0f;
+
+	/** Rendering style. Point Cloud draws fixed-size screen-space circular points. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gaussian Splatting|Rendering")
+	EGaussianSplatRenderMode RenderMode = EGaussianSplatRenderMode::Gaussian;
+
+	/** Point diameter in screen pixels when Render Mode is Point Cloud */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gaussian Splatting|Rendering",
+		meta = (ClampMin = "1.0", ClampMax = "64.0", EditCondition = "RenderMode == EGaussianSplatRenderMode::PointCloud", EditConditionHides))
+	float PointSize = 2.0f;
 
 	/** Enable frustum culling for better performance */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gaussian Splatting|Performance")

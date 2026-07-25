@@ -41,6 +41,8 @@ uint SHBufferCoeffs;   // Coefficients actually stored per splat in SHBuffer (ba
 uint UseSHRendering;   // 1 = use view-dependent SH evaluation, 0 = use pre-computed DC color
 float OpacityScale;
 float SplatScale;
+uint RenderMode;       // 0 = Gaussian, 1 = fixed-size point cloud
+float PointSize;       // Point diameter in screen pixels
 uint GlobalBaseOffset; // Offset into global ViewDataBuffer (for multi-proxy global accumulator, non-compaction path)
 
 // Global compaction path: read per-proxy base offset from GPU prefix-sum buffer
@@ -130,9 +132,18 @@ void ProcessSplat(uint splatIndex, uint outputIndex, uint selectedClusterID, uin
 	float2 axis1, axis2;
 	DecomposeCovariance2D(cov2D, axis1, axis2);
 
-	// Convert to NDC
-	axis1 = axis1 / ScreenSize * 4.0;
-	axis2 = axis2 / ScreenSize * 4.0;
+	if (RenderMode == 1)
+	{
+		// A quad spans [-1, 1], so these NDC radii produce PointSize pixels diameter.
+		axis1 = float2(PointSize / ScreenSize.x, 0.0);
+		axis2 = float2(0.0, PointSize / ScreenSize.y);
+	}
+	else
+	{
+		// Convert covariance axes to NDC.
+		axis1 = axis1 / ScreenSize * 4.0;
+		axis2 = axis2 / ScreenSize * 4.0;
+	}
 
 	// Safety clamp
 	float maxAxisSize = 2.0;
@@ -217,7 +228,7 @@ void ProcessSplat(uint splatIndex, uint outputIndex, uint selectedClusterID, uin
 	viewData.Axis1 = axis1;
 	viewData.Axis2 = axis2;
 	viewData.ClusterID = selectedClusterID;
-	viewData.Padding = selectedLODLevel;
+	viewData.Padding = selectedLODLevel | ((RenderMode == 1) ? 0x80000000u : 0u);
 	ViewDataBuffer[outputIndex] = viewData;
 }
 

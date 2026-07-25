@@ -194,6 +194,8 @@ void FGaussianSplatRenderer::DispatchCalcViewData(
 	Parameters.UseSHRendering = (EffectiveSHOrder > 0) ? 1 : 0;
 	Parameters.OpacityScale = OpacityScale;
 	Parameters.SplatScale = SplatScale;
+	Parameters.RenderMode = 0;
+	Parameters.PointSize = 2.0f;
 
 	// Not using global compaction path
 	Parameters.GlobalBaseOffsetsBuffer = GPUResources->CompactedSplatIndicesBufferSRV;  // dummy
@@ -834,6 +836,8 @@ void FGaussianSplatRenderer::DispatchCalcViewDataCompacted(
 	Parameters.UseSHRendering = (EffectiveSHOrder > 0) ? 1 : 0;
 	Parameters.OpacityScale = OpacityScale;
 	Parameters.SplatScale = SplatScale;
+	Parameters.RenderMode = 0;
+	Parameters.PointSize = 2.0f;
 
 	// Per-proxy compaction path
 	Parameters.GlobalBaseOffsetsBuffer = GPUResources->CompactedSplatIndicesBufferSRV;  // dummy
@@ -979,6 +983,8 @@ void FGaussianSplatRenderer::DispatchCalcViewDataGlobal(
 	Parameters.UseSHRendering = (EffectiveSHOrder > 0) ? 1 : 0;
 	Parameters.OpacityScale = OpacityScale;
 	Parameters.SplatScale = SplatScale;
+	Parameters.RenderMode = GPUResources->CurrentRenderMode;
+	Parameters.PointSize = GPUResources->CurrentPointSize;
 
 	// KEY: tell the shader where to write in the global buffer
 	Parameters.GlobalBaseOffset = GlobalBaseOffset;
@@ -1428,6 +1434,8 @@ void FGaussianSplatRenderer::DispatchCalcViewDataCompactedGlobal(
 	Parameters.UseSHRendering = (EffectiveSHOrder > 0) ? 1 : 0;
 	Parameters.OpacityScale  = OpacityScale;
 	Parameters.SplatScale    = SplatScale;
+	Parameters.RenderMode    = GPUResources->CurrentRenderMode;
+	Parameters.PointSize     = GPUResources->CurrentPointSize;
 
 	// Use the per-proxy indirect dispatch args (filled by DispatchPrepareIndirectArgs)
 	SetComputePipelineState(RHICmdList, ComputeShader.GetComputeShader());

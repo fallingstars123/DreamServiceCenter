@@ -33,6 +33,10 @@ void UActorFactoryGaussianSplat::PostSpawnActor(UObject* Asset, AActor* NewActor
 	if (GaussianSplatAsset && GaussianSplatActor && GaussianSplatActor->GaussianSplatComponent)
 	{
 		GaussianSplatActor->GaussianSplatComponent->SetSplatAsset(GaussianSplatAsset);
+		GaussianSplatActor->GaussianSplatComponent->RenderMode =
+			GaussianSplatAsset->IsPointCloudAsset()
+				? EGaussianSplatRenderMode::PointCloud
+				: EGaussianSplatRenderMode::Gaussian;
 	}
 }
 

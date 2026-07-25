@@ -151,6 +151,12 @@ FVertexOutput MainVS(
 	float2 ba = UnpackHalf2x16(viewData.PackedColorBA);
 	float4 color = float4(rg.x, rg.y, ba.x, ba.y);
 
+	// The high bit is set per splat so mixed Gaussian/point-cloud proxies can share one draw.
+	if ((viewData.Padding & 0x80000000u) != 0)
+	{
+		Output.DebugFlag = 2;
+	}
+
 	// Debug mode: override color with cluster-based coloring (Nanite-style)
 	// Only show debug visualization for Nanite-enabled assets; non-Nanite assets are not rendered
 	if (DebugMode == 1)
@@ -214,7 +220,7 @@ FPixelOutput MainPS(FVertexOutput Input)
 	float PrevDeviceZ = PrevClipPos.z / PrevClipPos.w;
 	float3 Velocity = float3(CurrentNDC - PrevNDC, CurrentDeviceZ - PrevDeviceZ);
 
-	// Debug mode: solid opaque colors without Gaussian falloff (Nanite-style)
+	// Debug and point-cloud modes use a solid circular footprint without Gaussian falloff.
 	if (Input.DebugFlag != 0)
 	{
 		// Simple circle cutoff for cleaner debug visualization
@@ -223,7 +229,16 @@ FPixelOutput MainPS(FVertexOutput Input)
 		{
 			discard;
 		}
-		// Output solid color (no premultiplied alpha, no Gaussian)
+		// Point-cloud mode preserves opacity and uses premultiplied-alpha blending.
+		if (Input.DebugFlag == 2)
+		{
+			color.a = saturate(color.a);
+			if (color.a < 1.0/255.0)
+			{
+				discard;
+			}
+			color.rgb *= color.a;
+		}
 		Output.Color = color;
 		Output.Velocity = EncodeVelocityToTexture(Velocity);
 		return Output;

@@ -285,6 +285,8 @@ void FNanoGSModule::OnPostOpaqueRender_RenderThread(FPostOpaqueRenderParameters&
 					!GPUResources->CachedLocalToWorld.Equals(Info.LocalToWorld, 0.0f) ||
 					GPUResources->CachedOpacityScale != Info.Proxy->GetOpacityScale() ||
 					GPUResources->CachedSplatScale != Info.Proxy->GetSplatScale() ||
+					GPUResources->CachedRenderMode != Info.Proxy->GetRenderMode() ||
+					GPUResources->CachedPointSize != Info.Proxy->GetPointSize() ||
 					GPUResources->CachedErrorThreshold != ProxyErrorThreshold ||
 					GPUResources->CachedDebugMode != CurrentDebugMode ||
 					GPUResources->CachedDebugForceLODLevel != CurrentDebugForceLODLevel)
@@ -424,6 +426,8 @@ void FNanoGSModule::OnPostOpaqueRender_RenderThread(FPostOpaqueRenderParameters&
 
 							FGaussianSplatGPUResources* GPUResources = Info.Proxy->GetGPUResources();
 							if (!GPUResources) continue;  // Extra safety check
+							GPUResources->CurrentRenderMode = Info.Proxy->GetRenderMode();
+							GPUResources->CurrentPointSize = Info.Proxy->GetPointSize();
 							int32 SplatCount = Info.Proxy->GetSplatCount();
 							int32 OriginalSplatCount = SplatCount - GPUResources->LODSplatCount;
 
@@ -510,6 +514,8 @@ void FNanoGSModule::OnPostOpaqueRender_RenderThread(FPostOpaqueRenderParameters&
 								GPUResources->CachedLocalToWorld = Info.LocalToWorld;
 								GPUResources->CachedOpacityScale = Info.Proxy->GetOpacityScale();
 								GPUResources->CachedSplatScale = Info.Proxy->GetSplatScale();
+								GPUResources->CachedRenderMode = Info.Proxy->GetRenderMode();
+								GPUResources->CachedPointSize = Info.Proxy->GetPointSize();
 								GPUResources->CachedErrorThreshold = FMath::Max(0.1f, Info.Proxy->GetLODErrorThreshold());
 								GPUResources->CachedDebugMode = CurrentDebugMode;
 								GPUResources->CachedDebugForceLODLevel = CurrentDebugForceLODLevel;
@@ -559,6 +565,8 @@ void FNanoGSModule::OnPostOpaqueRender_RenderThread(FPostOpaqueRenderParameters&
 
 							FGaussianSplatGPUResources* GPUResources = Info.Proxy->GetGPUResources();
 							if (!GPUResources) continue;  // Extra safety check
+							GPUResources->CurrentRenderMode = Info.Proxy->GetRenderMode();
+							GPUResources->CurrentPointSize = Info.Proxy->GetPointSize();
 
 							// Cluster culling for Nanite-enabled proxies
 							if (GPUResources->bEnableNanite && GPUResources->bHasClusterData)
@@ -600,6 +608,8 @@ void FNanoGSModule::OnPostOpaqueRender_RenderThread(FPostOpaqueRenderParameters&
 							GPUResources->CachedLocalToWorld = Info.LocalToWorld;
 							GPUResources->CachedOpacityScale = Info.Proxy->GetOpacityScale();
 							GPUResources->CachedSplatScale = Info.Proxy->GetSplatScale();
+							GPUResources->CachedRenderMode = Info.Proxy->GetRenderMode();
+							GPUResources->CachedPointSize = Info.Proxy->GetPointSize();
 
 							GPUResources->CachedErrorThreshold = FMath::Max(0.1f, Info.Proxy->GetLODErrorThreshold());
 							GPUResources->CachedDebugMode = CurrentDebugMode;

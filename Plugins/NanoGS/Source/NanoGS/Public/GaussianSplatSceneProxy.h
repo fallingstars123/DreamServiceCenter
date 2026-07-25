@@ -328,6 +328,10 @@ public:
 	FMatrix CachedLocalToWorld = FMatrix::Identity;
 	float CachedOpacityScale = -1.0f;
 	float CachedSplatScale = -1.0f;
+	uint32 CachedRenderMode = MAX_uint32;
+	float CachedPointSize = -1.0f;
+	uint32 CurrentRenderMode = 0;
+	float CurrentPointSize = 2.0f;
 	float CachedErrorThreshold = -1.0f;
 	int32 CachedDebugMode = -1;
 	int32 CachedDebugForceLODLevel = -1;
@@ -374,6 +378,8 @@ public:
 	int32 GetSHOrder() const { return SHOrder; }
 	float GetOpacityScale() const { return OpacityScale; }
 	float GetSplatScale() const { return SplatScale; }
+	uint32 GetRenderMode() const { return RenderMode; }
+	float GetPointSize() const { return PointSize; }
 	float GetLODErrorThreshold() const { return LODErrorThreshold; }
 
 	/** Check if this proxy is safe to use for rendering.
@@ -416,6 +422,8 @@ private:
 	int32 SHOrder = 3;
 	float OpacityScale = 1.0f;
 	float SplatScale = 1.0f;
+	uint32 RenderMode = 0;
+	float PointSize = 2.0f;
 	float LODErrorThreshold = 0.03f;
 	bool bEnableFrustumCulling = true;
 

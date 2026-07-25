@@ -37,6 +37,8 @@ void UGaussianSplatComponent::PostEditChangeProperty(FPropertyChangedEvent& Prop
 	else if (PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, SHOrder) ||
 			 PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, OpacityScale) ||
 			 PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, SplatScale) ||
+			 PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, RenderMode) ||
+			 PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, PointSize) ||
 			 PropertyName == GET_MEMBER_NAME_CHECKED(UGaussianSplatComponent, LODErrorThreshold))
 	{
 		MarkRenderStateDirty();
@@ -119,6 +121,12 @@ void UGaussianSplatComponent::SetSplatAsset(UGaussianSplatAsset* NewAsset)
 		UnsubscribeFromAssetChanges();
 
 		SplatAsset = NewAsset;
+		if (SplatAsset)
+		{
+			RenderMode = SplatAsset->IsPointCloudAsset()
+				? EGaussianSplatRenderMode::PointCloud
+				: EGaussianSplatRenderMode::Gaussian;
+		}
 
 		// Subscribe to new asset
 		if (IsRegistered())

@@ -685,6 +685,8 @@ FGaussianSplatSceneProxy::FGaussianSplatSceneProxy(const UGaussianSplatComponent
 	, SHOrder(InComponent->SHOrder)
 	, OpacityScale(InComponent->OpacityScale)
 	, SplatScale(InComponent->SplatScale)
+	, RenderMode(static_cast<uint32>(InComponent->RenderMode))
+	, PointSize(InComponent->PointSize)
 	, LODErrorThreshold(InComponent->LODErrorThreshold)
 	, bEnableFrustumCulling(InComponent->bEnableFrustumCulling)
 {
