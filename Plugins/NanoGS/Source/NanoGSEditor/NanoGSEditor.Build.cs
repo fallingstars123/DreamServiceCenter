@@ -41,6 +41,8 @@ public class NanoGSEditor : ModuleRules
 			}
 		);
 
+		AddEngineThirdPartyPrivateStaticDependencies(Target, "zlib");
+
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{

@@ -73,6 +73,14 @@ private:
 		UGaussianSplatAsset* ExistingAsset = nullptr
 	);
 
+	UGaussianSplatAsset* ImportSPZFile(
+		const FString& FilePath,
+		UObject* InParent,
+		FName InName,
+		EObjectFlags Flags,
+		UGaussianSplatAsset* ExistingAsset = nullptr
+	);
+
 	UGaussianSplatAsset* CreateAssetFromSplatData(
 		const FString& FilePath,
 		UObject* InParent,

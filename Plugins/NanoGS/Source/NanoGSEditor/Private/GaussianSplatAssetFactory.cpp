@@ -4,6 +4,7 @@
 #include "GaussianSplatAsset.h"
 #include "PLYFileReader.h"
 #include "COLMAPPointsReader.h"
+#include "SPZFileReader.h"
 #include "EditorFramework/AssetImportData.h"
 #include "Misc/FeedbackContext.h"
 #include "Misc/ScopedSlowTask.h"
@@ -18,6 +19,7 @@ UGaussianSplatAssetFactory::UGaussianSplatAssetFactory()
 
 	Formats.Add(TEXT("ply;PLY Gaussian Splatting File"));
 	Formats.Add(TEXT("bin;COLMAP Sparse Point Cloud (points3D.bin)"));
+	Formats.Add(TEXT("spz;Niantic Compressed Gaussian Splat File"));
 }
 
 bool UGaussianSplatAssetFactory::FactoryCanImport(const FString& Filename)
@@ -26,6 +28,10 @@ bool UGaussianSplatAssetFactory::FactoryCanImport(const FString& Filename)
 	if (Extension.Equals(TEXT("ply"), ESearchCase::IgnoreCase))
 	{
 		return FPLYFileReader::IsValidPLYFile(Filename);
+	}
+	if (Extension.Equals(TEXT("spz"), ESearchCase::IgnoreCase))
+	{
+		return FSPZFileReader::IsValidSPZFile(Filename);
 	}
 	return Extension.Equals(TEXT("bin"), ESearchCase::IgnoreCase) &&
 		FCOLMAPPointsReader::IsValidPointsFile(Filename);
@@ -43,10 +49,14 @@ UObject* UGaussianSplatAssetFactory::FactoryCreateFile(
 {
 	bOutOperationCanceled = false;
 
-	const bool bIsCOLMAP = FPaths::GetExtension(Filename).Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	const FString Extension = FPaths::GetExtension(Filename);
+	const bool bIsCOLMAP = Extension.Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	const bool bIsSPZ = Extension.Equals(TEXT("spz"), ESearchCase::IgnoreCase);
 	UGaussianSplatAsset* NewAsset = bIsCOLMAP
 		? ImportCOLMAPPointsFile(Filename, InParent, InName, Flags, nullptr)
-		: ImportPLYFile(Filename, InParent, InName, Flags, nullptr);
+		: bIsSPZ
+			? ImportSPZFile(Filename, InParent, InName, Flags, nullptr)
+			: ImportPLYFile(Filename, InParent, InName, Flags, nullptr);
 
 	if (!NewAsset)
 	{
@@ -110,10 +120,14 @@ EReimportResult::Type UGaussianSplatAssetFactory::Reimport(UObject* Obj)
 	// Use the original quality level
 	QualityLevel = Asset->ImportQuality;
 
-	const bool bIsCOLMAP = FPaths::GetExtension(Asset->SourceFilePath).Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	const FString Extension = FPaths::GetExtension(Asset->SourceFilePath);
+	const bool bIsCOLMAP = Extension.Equals(TEXT("bin"), ESearchCase::IgnoreCase);
+	const bool bIsSPZ = Extension.Equals(TEXT("spz"), ESearchCase::IgnoreCase);
 	UGaussianSplatAsset* ReimportedAsset = bIsCOLMAP
 		? ImportCOLMAPPointsFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset)
-		: ImportPLYFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset);
+		: bIsSPZ
+			? ImportSPZFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset)
+			: ImportPLYFile(Asset->SourceFilePath, Asset->GetOuter(), Asset->GetFName(), Asset->GetFlags(), Asset);
 
 	if (ReimportedAsset)
 	{
@@ -157,6 +171,31 @@ UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportPLYFile(
 
 	UE_LOG(LogTemp, Log, TEXT("Read %d splats from PLY file (SH bands: %d)"), SplatData.Num(), DetectedSHBands);
 
+	return CreateAssetFromSplatData(
+		FilePath, InParent, InName, Flags, SplatData, DetectedSHBands, false, ExistingAsset);
+}
+
+UGaussianSplatAsset* UGaussianSplatAssetFactory::ImportSPZFile(
+	const FString& FilePath,
+	UObject* InParent,
+	FName InName,
+	EObjectFlags Flags,
+	UGaussianSplatAsset* ExistingAsset)
+{
+	FScopedSlowTask SlowTask(100.0f, FText::FromString(TEXT("Importing SPZ Gaussian Splat...")));
+	SlowTask.MakeDialog(true);
+	SlowTask.EnterProgressFrame(35.0f, FText::FromString(TEXT("Decompressing and reading SPZ file...")));
+
+	TArray<FGaussianSplatData> SplatData;
+	FString ErrorMessage;
+	int32 DetectedSHBands = 0;
+	if (!FSPZFileReader::ReadSPZFile(FilePath, SplatData, ErrorMessage, &DetectedSHBands))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to read SPZ file: %s"), *ErrorMessage);
+		return nullptr;
+	}
+
+	SlowTask.EnterProgressFrame(65.0f, FText::FromString(TEXT("Creating Gaussian Splat asset...")));
 	return CreateAssetFromSplatData(
 		FilePath, InParent, InName, Flags, SplatData, DetectedSHBands, false, ExistingAsset);
 }
