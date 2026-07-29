@@ -6,3 +6,12 @@ Saved/
 
 Plugins/*/Binaries/
 Plugins/*/Intermediate/
+
+# Share precompiled NanoGS modules
+!Plugins/NanoGS/Binaries/
+!Plugins/NanoGS/Binaries/Win64/
+
+# Only keep required runtime files
+Plugins/NanoGS/Binaries/Win64/*
+!Plugins/NanoGS/Binaries/Win64/*.dll
+!Plugins/NanoGS/Binaries/Win64/*.modules
