@@ -18,6 +18,10 @@
 		{
 			"Name": "NanoGS",
 			"Enabled": true
+		},
+		{
+			"Name": "PCG",
+			"Enabled": true
 		}
 	]
 }
