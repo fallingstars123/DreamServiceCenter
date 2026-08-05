@@ -4,6 +4,13 @@ Intermediate/
 Saved/
 .vs/
 
+# Local editor and AI assistant settings
+.codex/
+.cursor/
+.gemini/
+.vscode/
+.mcp.json
+
 Plugins/*/Binaries/
 Plugins/*/Intermediate/
 

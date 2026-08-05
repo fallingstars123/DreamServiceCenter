@@ -11,9 +11,9 @@ namespace
 {
 	constexpr uint32 SPZMagic = 0x5053474e; // "NGSP" in little endian
 	constexpr uint8 FlagHasExtensions = 0x2;
-	constexpr int32 HeaderSize = 16;
+	constexpr int32 SPZHeaderSize = 16;
 	constexpr int32 MaxSupportedPoints = 100000000;
-	constexpr float MetersToUE = 100.0f;
+	constexpr float SPZMetersToUE = 100.0f;
 	constexpr float SPZColorScale = 0.15f;
 	constexpr float SqrtHalf = 0.7071067811865475f;
 
@@ -30,7 +30,7 @@ namespace
 	};
 #pragma pack(pop)
 
-	static_assert(sizeof(FSPZLegacyHeader) == HeaderSize, "Unexpected SPZ header layout");
+	static_assert(sizeof(FSPZLegacyHeader) == SPZHeaderSize, "Unexpected SPZ header layout");
 
 	int32 SHCoefficientCount(int32 Degree)
 	{
@@ -184,7 +184,7 @@ bool FSPZFileReader::ReadSPZFile(
 	}
 
 	TArray<uint8> Data;
-	if (!InflateGzip(Compressed, Data, OutError) || Data.Num() < HeaderSize)
+	if (!InflateGzip(Compressed, Data, OutError) || Data.Num() < SPZHeaderSize)
 	{
 		if (OutError.IsEmpty())
 		{
@@ -233,7 +233,7 @@ bool FSPZFileReader::ReadSPZFile(
 	const int64 RotationStride = Header.Version >= 3 ? 4 : 3;
 	const int64 RotationBytes = PointCount * RotationStride;
 	const int64 SHBytes = PointCount * SHCount * 3;
-	const int64 ExpectedSize = HeaderSize + PositionBytes + AlphaBytes + ColorBytes +
+	const int64 ExpectedSize = SPZHeaderSize + PositionBytes + AlphaBytes + ColorBytes +
 		ScaleBytes + RotationBytes + SHBytes;
 	if (ExpectedSize > Data.Num())
 	{
@@ -243,7 +243,7 @@ bool FSPZFileReader::ReadSPZFile(
 		return false;
 	}
 
-	const uint8* Positions = Data.GetData() + HeaderSize;
+	const uint8* Positions = Data.GetData() + SPZHeaderSize;
 	const uint8* Alphas = Positions + PositionBytes;
 	const uint8* Colors = Alphas + AlphaBytes;
 	const uint8* Scales = Colors + ColorBytes;
@@ -262,7 +262,7 @@ bool FSPZFileReader::ReadSPZFile(
 		const float RubZ = DecodeSigned24(Position + 6) * PositionScale;
 
 		// SPZ defaults to RUB. Convert RUB -> RDF, then use NanoGS' existing RDF -> UE mapping.
-		Splat.Position = FVector3f(-RubZ, RubX, RubY) * MetersToUE;
+		Splat.Position = FVector3f(-RubZ, RubX, RubY) * SPZMetersToUE;
 
 		const uint8* RotationData = Rotations + static_cast<int64>(Index) * RotationStride;
 		const FQuat4f RubRotation = Header.Version >= 3
@@ -272,9 +272,9 @@ bool FSPZFileReader::ReadSPZFile(
 			RubRotation.Z, -RubRotation.X, -RubRotation.Y, RubRotation.W));
 
 		const uint8* Scale = Scales + static_cast<int64>(Index) * 3;
-		const float ScaleX = FMath::Exp(static_cast<float>(Scale[0]) / 16.0f - 10.0f) * MetersToUE;
-		const float ScaleY = FMath::Exp(static_cast<float>(Scale[1]) / 16.0f - 10.0f) * MetersToUE;
-		const float ScaleZ = FMath::Exp(static_cast<float>(Scale[2]) / 16.0f - 10.0f) * MetersToUE;
+		const float ScaleX = FMath::Exp(static_cast<float>(Scale[0]) / 16.0f - 10.0f) * SPZMetersToUE;
+		const float ScaleY = FMath::Exp(static_cast<float>(Scale[1]) / 16.0f - 10.0f) * SPZMetersToUE;
+		const float ScaleZ = FMath::Exp(static_cast<float>(Scale[2]) / 16.0f - 10.0f) * SPZMetersToUE;
 		Splat.Scale = FVector3f(ScaleZ, ScaleX, ScaleY);
 
 		Splat.Opacity = static_cast<float>(Alphas[Index]) / 255.0f;
