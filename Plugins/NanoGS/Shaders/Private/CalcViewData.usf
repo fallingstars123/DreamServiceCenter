@@ -43,6 +43,21 @@ float OpacityScale;
 float SplatScale;
 uint RenderMode;       // 0 = Gaussian, 1 = fixed-size point cloud
 float PointSize;       // Point diameter in screen pixels
+
+// Per-actor world-space oriented selection boxes. Multiple boxes of the same
+// mode are unioned. Keep boxes are evaluated first and win in overlaps.
+uint CullSelectionBoxCount;
+uint KeepSelectionBoxCount;
+float4 CullSelectionBoxCenters[16];
+float4 CullSelectionBoxAxisX[16];
+float4 CullSelectionBoxAxisY[16];
+float4 CullSelectionBoxAxisZ[16];
+float4 CullSelectionBoxExtents[16];
+float4 KeepSelectionBoxCenters[16];
+float4 KeepSelectionBoxAxisX[16];
+float4 KeepSelectionBoxAxisY[16];
+float4 KeepSelectionBoxAxisZ[16];
+float4 KeepSelectionBoxExtents[16];
 uint GlobalBaseOffset; // Offset into global ViewDataBuffer (for multi-proxy global accumulator, non-compaction path)
 
 // Global compaction path: read per-proxy base offset from GPU prefix-sum buffer
@@ -65,6 +80,60 @@ bool IsLODClusterSelected(uint clusterIndex)
 	uint bitmapIndex = clusterIndex / 32;
 	uint bitMask = 1u << (clusterIndex % 32);
 	return (LODClusterSelectedBitmap[bitmapIndex] & bitMask) != 0;
+}
+
+bool IsPointInsideSelectionBox(
+	float3 WorldPosition,
+	float4 Center,
+	float4 AxisX,
+	float4 AxisY,
+	float4 AxisZ,
+	float4 Extent)
+{
+	float3 Delta = WorldPosition - Center.xyz;
+	float3 BoxPosition = float3(
+		dot(Delta, AxisX.xyz),
+		dot(Delta, AxisY.xyz),
+		dot(Delta, AxisZ.xyz));
+	return all(abs(BoxPosition) <= Extent.xyz);
+}
+
+bool IsPointInsideAnyKeepBox(float3 WorldPosition)
+{
+	[loop]
+	for (uint Index = 0; Index < KeepSelectionBoxCount; ++Index)
+	{
+		if (IsPointInsideSelectionBox(
+			WorldPosition,
+			KeepSelectionBoxCenters[Index],
+			KeepSelectionBoxAxisX[Index],
+			KeepSelectionBoxAxisY[Index],
+			KeepSelectionBoxAxisZ[Index],
+			KeepSelectionBoxExtents[Index]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool IsPointInsideAnyCullBox(float3 WorldPosition)
+{
+	[loop]
+	for (uint Index = 0; Index < CullSelectionBoxCount; ++Index)
+	{
+		if (IsPointInsideSelectionBox(
+			WorldPosition,
+			CullSelectionBoxCenters[Index],
+			CullSelectionBoxAxisX[Index],
+			CullSelectionBoxAxisY[Index],
+			CullSelectionBoxAxisZ[Index],
+			CullSelectionBoxExtents[Index]))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 // Helper: write an invalid (culled) splat into ViewDataBuffer
@@ -97,6 +166,17 @@ void ProcessSplat(uint splatIndex, uint outputIndex, uint selectedClusterID, uin
 
 	// Transform to world space
 	float4 worldPos = mul(float4(localPos, 1.0), LocalToWorld);
+
+	// Keep is an inclusion mask (union of all keep boxes). A kept point is
+	// never removed by a cull box, so keep has explicit overlap priority.
+	const bool bInsideKeep = IsPointInsideAnyKeepBox(worldPos.xyz);
+	if ((KeepSelectionBoxCount > 0 && !bInsideKeep) ||
+		(!bInsideKeep && IsPointInsideAnyCullBox(worldPos.xyz)))
+	{
+		WriteInvalidSplat(outputIndex, selectedClusterID, selectedLODLevel);
+		return;
+	}
+
 	float4 clipPos = mul(worldPos, WorldToClip);
 
 	// Store translated world position for velocity calculation in pixel shader

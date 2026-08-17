@@ -2,7 +2,9 @@
 
 #include "GaussianSplatSceneProxy.h"
 #include "GaussianSplatComponent.h"
+#include "GaussianSplatActor.h"
 #include "GaussianSplatAsset.h"
+#include "GaussianSplatSelectionBoxComponent.h"
 #include "GaussianSplatRenderData.h"
 #include "GaussianSplatViewExtension.h"
 #include "Engine/Texture2D.h"
@@ -691,6 +693,45 @@ FGaussianSplatSceneProxy::FGaussianSplatSceneProxy(const UGaussianSplatComponent
 	, bEnableFrustumCulling(InComponent->bEnableFrustumCulling)
 {
 	bWillEverBeLit = false;
+
+	const AGaussianSplatActor* SplatActor = Cast<AGaussianSplatActor>(InComponent->GetOwner());
+	if (!SplatActor)
+	{
+		return;
+	}
+
+	auto CopySelectionBoxes = [](const TArray<TObjectPtr<UGaussianSplatSelectionBoxComponent>>& Source,
+		TArray<FGaussianSplatSelectionBoxRenderData>& Destination)
+	{
+		Destination.Reserve(FMath::Min(Source.Num(), static_cast<int32>(FGaussianSplatGPUResources::MaxSelectionBoxesPerMode)));
+		for (UGaussianSplatSelectionBoxComponent* Box : Source)
+		{
+			if (!IsValid(Box) || Destination.Num() >= static_cast<int32>(FGaussianSplatGPUResources::MaxSelectionBoxesPerMode))
+			{
+				continue;
+			}
+
+			const FTransform& Transform = Box->GetComponentTransform();
+			const FQuat Rotation = Transform.GetRotation();
+			const FVector Extent = Box->GetScaledBoxExtent().GetAbs();
+
+			FGaussianSplatSelectionBoxRenderData& Data = Destination.AddDefaulted_GetRef();
+			Data.Center = FVector4f(FVector3f(Transform.GetLocation()), 0.0f);
+			Data.AxisX = FVector4f(FVector3f(Rotation.GetAxisX()), 0.0f);
+			Data.AxisY = FVector4f(FVector3f(Rotation.GetAxisY()), 0.0f);
+			Data.AxisZ = FVector4f(FVector3f(Rotation.GetAxisZ()), 0.0f);
+			Data.Extent = FVector4f(FVector3f(Extent), 0.0f);
+		}
+	};
+
+	if (SplatActor->bEnableCullSelectionBoxes)
+	{
+		CopySelectionBoxes(SplatActor->GetCullSelectionBoxes(), CullSelectionBoxes);
+	}
+	if (SplatActor->bEnableKeepSelectionBoxes)
+	{
+		CopySelectionBoxes(SplatActor->GetKeepSelectionBoxes(), KeepSelectionBoxes);
+	}
 }
 
 FGaussianSplatSceneProxy::~FGaussianSplatSceneProxy()
@@ -826,6 +867,26 @@ void FGaussianSplatSceneProxy::CreateRenderThreadResources(FRHICommandListBase& 
 	{
 		GPUResources = new FGaussianSplatGPUResources();
 		GPUResources->Initialize(CachedAsset);
+
+		auto CopySelectionBoxRenderData = [](const TArray<FGaussianSplatSelectionBoxRenderData>& Source,
+			uint32& OutCount,
+			FGaussianSplatSelectionBoxRenderData* OutBoxes)
+		{
+			OutCount = FMath::Min(static_cast<uint32>(Source.Num()), FGaussianSplatGPUResources::MaxSelectionBoxesPerMode);
+			for (uint32 Index = 0; Index < OutCount; ++Index)
+			{
+				OutBoxes[Index] = Source[Index];
+			}
+		};
+
+		CopySelectionBoxRenderData(
+			CullSelectionBoxes,
+			GPUResources->CullSelectionBoxCount,
+			GPUResources->CullSelectionBoxes);
+		CopySelectionBoxRenderData(
+			KeepSelectionBoxes,
+			GPUResources->KeepSelectionBoxCount,
+			GPUResources->KeepSelectionBoxes);
 
 		// Get color texture reference
 		if (CachedAsset->ColorTexture)

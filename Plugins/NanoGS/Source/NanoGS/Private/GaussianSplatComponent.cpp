@@ -143,6 +143,11 @@ int32 UGaussianSplatComponent::GetSplatCount() const
 	return SplatAsset ? SplatAsset->GetSplatCount() : 0;
 }
 
+void UGaussianSplatComponent::NotifySelectionBoxesChanged()
+{
+	MarkRenderStateDirty();
+}
+
 void UGaussianSplatComponent::OnAssetChanged()
 {
 	bBoundsCached = false;

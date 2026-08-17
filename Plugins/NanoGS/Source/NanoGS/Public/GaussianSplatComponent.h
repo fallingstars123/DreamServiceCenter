@@ -59,6 +59,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Gaussian Splatting")
 	int32 GetSplatCount() const;
 
+	/** Called by selection box components after their state or transform changes. */
+	void NotifySelectionBoxesChanged();
+
 public:
 	/** The Gaussian Splat asset to render */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gaussian Splatting")

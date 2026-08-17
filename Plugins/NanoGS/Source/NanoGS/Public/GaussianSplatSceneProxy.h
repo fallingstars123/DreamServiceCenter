@@ -15,6 +15,15 @@ class UGaussianSplatComponent;
 class UGaussianSplatAsset;
 class FGaussianSplatRenderData;
 
+struct FGaussianSplatSelectionBoxRenderData
+{
+	FVector4f Center = FVector4f(0, 0, 0, 0);
+	FVector4f AxisX = FVector4f(1, 0, 0, 0);
+	FVector4f AxisY = FVector4f(0, 1, 0, 0);
+	FVector4f AxisZ = FVector4f(0, 0, 1, 0);
+	FVector4f Extent = FVector4f(0, 0, 0, 0);
+};
+
 
 /**
  * GPU resources for Gaussian Splatting rendering
@@ -25,6 +34,8 @@ class FGaussianSplatRenderData;
 class FGaussianSplatGPUResources : public FRenderResource
 {
 public:
+	static constexpr uint32 MaxSelectionBoxesPerMode = 16;
+
 	FGaussianSplatGPUResources();
 	virtual ~FGaussianSplatGPUResources();
 
@@ -336,6 +347,12 @@ public:
 	int32 CachedDebugMode = -1;
 	int32 CachedDebugForceLODLevel = -1;
 	bool bHasCachedSortData = false;
+
+	/** World-space oriented selection boxes copied from the actor when the proxy is built. */
+	uint32 CullSelectionBoxCount = 0;
+	uint32 KeepSelectionBoxCount = 0;
+	FGaussianSplatSelectionBoxRenderData CullSelectionBoxes[MaxSelectionBoxesPerMode];
+	FGaussianSplatSelectionBoxRenderData KeepSelectionBoxes[MaxSelectionBoxesPerMode];
 };
 
 /**
@@ -426,6 +443,9 @@ private:
 	float PointSize = 2.0f;
 	float LODErrorThreshold = 0.03f;
 	bool bEnableFrustumCulling = true;
+
+	TArray<FGaussianSplatSelectionBoxRenderData> CullSelectionBoxes;
+	TArray<FGaussianSplatSelectionBoxRenderData> KeepSelectionBoxes;
 
 #if WITH_EDITOR
 	/** Cached hit proxy created in CreateHitProxies, used for editor viewport click selection. */

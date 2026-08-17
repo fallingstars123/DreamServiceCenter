@@ -54,6 +54,19 @@ class FGaussianSplatCalcViewDataCS : public FGlobalShader
 		SHADER_PARAMETER(float, SplatScale)
 		SHADER_PARAMETER(uint32, RenderMode)
 		SHADER_PARAMETER(float, PointSize)
+		// World-space oriented selection boxes. Keep boxes have priority over cull boxes.
+		SHADER_PARAMETER(uint32, CullSelectionBoxCount)
+		SHADER_PARAMETER(uint32, KeepSelectionBoxCount)
+		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxCenters, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxAxisX, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxAxisY, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxAxisZ, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxExtents, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, KeepSelectionBoxCenters, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, KeepSelectionBoxAxisX, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, KeepSelectionBoxAxisY, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, KeepSelectionBoxAxisZ, [16])
+		SHADER_PARAMETER_ARRAY(FVector4f, KeepSelectionBoxExtents, [16])
 		SHADER_PARAMETER(uint32, GlobalBaseOffset)  // Offset into global ViewDataBuffer (non-compaction global path)
 		// Global compaction path: GPU prefix-sum offsets
 		SHADER_PARAMETER_SRV(StructuredBuffer<uint>, GlobalBaseOffsetsBuffer)  // prefix sums per proxy

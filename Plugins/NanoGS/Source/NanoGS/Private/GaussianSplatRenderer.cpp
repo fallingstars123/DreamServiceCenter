@@ -108,6 +108,27 @@ static FMatrix ComputeWorldToPLY(const FMatrix& LocalToWorld)
 	return LocalToWorld.Inverse() * LocalToPLY;
 }
 
+static void SetSelectionBoxParameters(
+	FGaussianSplatCalcViewDataCS::FParameters& Parameters,
+	const FGaussianSplatGPUResources* GPUResources)
+{
+	Parameters.CullSelectionBoxCount = GPUResources->CullSelectionBoxCount;
+	Parameters.KeepSelectionBoxCount = GPUResources->KeepSelectionBoxCount;
+	for (uint32 Index = 0; Index < FGaussianSplatGPUResources::MaxSelectionBoxesPerMode; ++Index)
+	{
+		Parameters.CullSelectionBoxCenters[Index] = GPUResources->CullSelectionBoxes[Index].Center;
+		Parameters.CullSelectionBoxAxisX[Index] = GPUResources->CullSelectionBoxes[Index].AxisX;
+		Parameters.CullSelectionBoxAxisY[Index] = GPUResources->CullSelectionBoxes[Index].AxisY;
+		Parameters.CullSelectionBoxAxisZ[Index] = GPUResources->CullSelectionBoxes[Index].AxisZ;
+		Parameters.CullSelectionBoxExtents[Index] = GPUResources->CullSelectionBoxes[Index].Extent;
+		Parameters.KeepSelectionBoxCenters[Index] = GPUResources->KeepSelectionBoxes[Index].Center;
+		Parameters.KeepSelectionBoxAxisX[Index] = GPUResources->KeepSelectionBoxes[Index].AxisX;
+		Parameters.KeepSelectionBoxAxisY[Index] = GPUResources->KeepSelectionBoxes[Index].AxisY;
+		Parameters.KeepSelectionBoxAxisZ[Index] = GPUResources->KeepSelectionBoxes[Index].AxisZ;
+		Parameters.KeepSelectionBoxExtents[Index] = GPUResources->KeepSelectionBoxes[Index].Extent;
+	}
+}
+
 void FGaussianSplatRenderer::DispatchCalcViewData(
 	FRHICommandListImmediate& RHICmdList,
 	const FSceneView& View,
@@ -196,6 +217,7 @@ void FGaussianSplatRenderer::DispatchCalcViewData(
 	Parameters.SplatScale = SplatScale;
 	Parameters.RenderMode = 0;
 	Parameters.PointSize = 2.0f;
+	SetSelectionBoxParameters(Parameters, GPUResources);
 
 	// Not using global compaction path
 	Parameters.GlobalBaseOffsetsBuffer = GPUResources->CompactedSplatIndicesBufferSRV;  // dummy
@@ -838,6 +860,7 @@ void FGaussianSplatRenderer::DispatchCalcViewDataCompacted(
 	Parameters.SplatScale = SplatScale;
 	Parameters.RenderMode = 0;
 	Parameters.PointSize = 2.0f;
+	SetSelectionBoxParameters(Parameters, GPUResources);
 
 	// Per-proxy compaction path
 	Parameters.GlobalBaseOffsetsBuffer = GPUResources->CompactedSplatIndicesBufferSRV;  // dummy
@@ -985,6 +1008,7 @@ void FGaussianSplatRenderer::DispatchCalcViewDataGlobal(
 	Parameters.SplatScale = SplatScale;
 	Parameters.RenderMode = GPUResources->CurrentRenderMode;
 	Parameters.PointSize = GPUResources->CurrentPointSize;
+	SetSelectionBoxParameters(Parameters, GPUResources);
 
 	// KEY: tell the shader where to write in the global buffer
 	Parameters.GlobalBaseOffset = GlobalBaseOffset;
@@ -1436,6 +1460,7 @@ void FGaussianSplatRenderer::DispatchCalcViewDataCompactedGlobal(
 	Parameters.SplatScale    = SplatScale;
 	Parameters.RenderMode    = GPUResources->CurrentRenderMode;
 	Parameters.PointSize     = GPUResources->CurrentPointSize;
+	SetSelectionBoxParameters(Parameters, GPUResources);
 
 	// Use the per-proxy indirect dispatch args (filled by DispatchPrepareIndirectArgs)
 	SetComputePipelineState(RHICmdList, ComputeShader.GetComputeShader());
