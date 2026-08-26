@@ -30,10 +30,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "Auto_UI",
-			"Enabled": true
-		},
-		{
 			"Name": "PCG",
 			"Enabled": true
 		},
