@@ -1,0 +1,28 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\private\\gaussiansplatcomponent.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\intermediate\\build\\win64\\x64\\dreamservicecentereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_6.h.pch",
+        "Includes": [
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\nanogs\\definitions.nanogs.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatcomponent.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiandatatypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiandatatypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatcomponent.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatasset.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussianclustertypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussianclustertypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatasset.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatsceneproxy.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatviewextension.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\engine\\public\\sceneviewextension.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\engine\\public\\sceneviewextensioncontext.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\sceneviewextensioncontext.generated.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\engine\\public\\scenetexturesconfig.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\gbufferinfo.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

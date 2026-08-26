@@ -1,0 +1,419 @@
+{
+    "version": "2.1.0",
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "runs": [
+        {
+            "results": [
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionNoAAMatrix': Use GetViewToClipNoAA() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 40,
+                                    "startColumn": 92,
+                                    "snippet": {
+                                        "text": "\tFMatrix CurTranslatedVP = View.ViewMatrices.GetTranslatedViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 191,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 193,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionMatrix': Use GetViewToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 199,
+                                    "startColumn": 48,
+                                    "snippet": {
+                                        "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 834,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 836,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionMatrix': Use GetViewToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 842,
+                                    "startColumn": 48,
+                                    "snippet": {
+                                        "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 982,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 984,
+                                    "startColumn": 56,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionMatrix': Use GetViewToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 990,
+                                    "startColumn": 48,
+                                    "snippet": {
+                                        "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1434,
+                                    "startColumn": 60,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToClip     = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewMatrix': Use GetWorldToView() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1436,
+                                    "startColumn": 60,
+                                    "snippet": {
+                                        "text": "\tParameters.WorldToView     = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionMatrix': Use GetViewToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1442,
+                                    "startColumn": 48,
+                                    "snippet": {
+                                        "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewProjectionMatrix': Use GetWorldToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1873,
+                                    "startColumn": 42,
+                                    "snippet": {
+                                        "text": "\t\tExtractFrustumPlanes(View.ViewMatrices.GetViewProjectionMatrix(), FrustumPlanes);"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetViewProjectionMatrix': Use GetWorldToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1887,
+                                    "startColumn": 60,
+                                    "snippet": {
+                                        "text": "\t\tCullingParams.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewProjectionMatrix());"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "C4996",
+                    "message": {
+                        "text": "'FViewMatrices::GetProjectionMatrix': Use GetViewToClip() instead - Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
+                                },
+                                "region": {
+                                    "startLine": 1900,
+                                    "startColumn": 49,
+                                    "snippet": {
+                                        "text": "\t\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "tool": {
+                "driver": {
+                    "name": "MSVC",
+                    "shortDescription": {
+                        "text": "Microsoft Visual C++ Compiler Warnings/Errors"
+                    },
+                    "informationUri": "https://docs.microsoft.com/cpp/error-messages/compiler-errors-1/c-cpp-build-errors"
+                }
+            }
+        }
+    ]
+}

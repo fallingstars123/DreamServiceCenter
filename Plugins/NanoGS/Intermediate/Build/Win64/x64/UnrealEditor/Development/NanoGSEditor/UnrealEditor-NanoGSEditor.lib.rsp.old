@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/experimental:deterministic
+/DEF
+/NAME:"UnrealEditor-NanoGSEditor.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Intermediate/Build/Win64/x64/DreamServiceCenterEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_6.h.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGSEditor/Module.NanoGSEditor.cpp.obj"
+/OUT:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGSEditor/UnrealEditor-NanoGSEditor.lib"

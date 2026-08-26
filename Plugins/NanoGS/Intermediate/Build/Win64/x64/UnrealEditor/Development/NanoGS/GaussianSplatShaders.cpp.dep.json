@@ -1,0 +1,35 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\private\\gaussiansplatshaders.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\intermediate\\build\\win64\\x64\\dreamservicecentereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_6.h.pch",
+        "Includes": [
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\nanogs\\definitions.nanogs.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatshaders.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\shaderparameterstruct.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphresources.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rhi\\public\\rhitransientresourceallocator.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphparameter.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphresources.inl",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphbuilder.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphblackboard.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\core\\public\\misc\\generatedtypename.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphevent.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphevent.inl",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphpass.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphparameters.inl",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphtrace.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rhi\\public\\rendertracing.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphvalidation.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\core\\public\\experimental\\containers\\robinhoodhashtable.h",
+            "c:\\program files\\epic games\\ue_5.8\\engine\\source\\runtime\\rendercore\\public\\rendergraphbuilder.inl",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussiandatatypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiandatatypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\source\\nanogs\\public\\gaussianclustertypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter 5.8\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussianclustertypes.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

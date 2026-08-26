@@ -1,0 +1,42 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\actorfactorygaussiansplat.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\intermediate\\build\\win64\\x64\\dreamservicecentereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\nanogseditor\\definitions.nanogseditor.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\actorfactorygaussiansplat.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\editor\\unrealed\\classes\\actorfactories\\actorfactory.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\editor\\editorframework\\public\\factories\\assetfactoryinterface.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\instances\\instancedplacementclientinfo.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\ismpartition\\ismcomponentdescriptor.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\ismcomponentdescriptor.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\ismpartition\\ismpartitionclient.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\ismpartitionclient.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\ismpartition\\ismpartitioninstancemanager.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\ismpartitioninstancemanager.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\instances\\instancedplacementhash.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\core\\public\\misc\\hashbuilder.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\elements\\sminstance\\sminstanceelementid.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\public\\instancedstaticmeshdelegates.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\sminstanceelementid.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\instancedplacementclientinfo.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\editorframework\\uht\\assetfactoryinterface.generated.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealed\\uht\\actorfactory.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogseditor\\uht\\actorfactorygaussiansplat.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatasset.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiandatatypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiandatatypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussianclustertypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussianclustertypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatasset.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatactor.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatactor.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatcomponent.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatcomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

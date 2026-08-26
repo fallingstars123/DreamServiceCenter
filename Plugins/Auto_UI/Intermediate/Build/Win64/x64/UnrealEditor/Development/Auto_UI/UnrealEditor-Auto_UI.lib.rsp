@@ -1,0 +1,23 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/experimental:deterministic
+/DEF
+/NAME:"UnrealEditor-Auto_UI.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Intermediate/Build/Win64/x64/DreamServiceCenterEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_6.h.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/Module.Auto_UI.gen.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUIAiServiceSettings.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUIAiVisionClient.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUILayoutBlockMerge.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUILayoutJson.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUIMathBackgroundMatte.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/AutoUIWidgetBuilder.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/Auto_UI.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/SAutoUIAiSettingsDialog.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/SAutoUIIconOverlay.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/SAutoUITab.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/PerModuleInline.gen.cpp.obj"
+/OUT:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/Auto_UI/Intermediate/Build/Win64/x64/UnrealEditor/Development/Auto_UI/UnrealEditor-Auto_UI.lib"

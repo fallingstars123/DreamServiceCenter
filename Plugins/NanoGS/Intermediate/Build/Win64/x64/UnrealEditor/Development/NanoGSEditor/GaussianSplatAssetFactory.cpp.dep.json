@@ -1,0 +1,29 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\gaussiansplatassetfactory.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\intermediate\\build\\win64\\x64\\dreamservicecentereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\nanogseditor\\definitions.nanogseditor.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\public\\gaussiansplatassetfactory.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\editor\\unrealed\\public\\editorreimporthandler.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiandatatypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiandatatypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogseditor\\uht\\gaussiansplatassetfactory.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiansplatasset.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussianclustertypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussianclustertypes.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiansplatasset.generated.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\plyfilereader.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\colmappointsreader.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\spzfilereader.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\editorframework\\assetimportdata.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\uobject\\assetregistrytagscontext.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\uobject\\cookenums.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\assetimportdata.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,9 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.Auto_UI.gen.cpp.obj": [
+			"AutoUIAiServiceSettings.gen.cpp.obj",
+			"Auto_UI.init.gen.cpp.obj"
+		]
+	}
+}

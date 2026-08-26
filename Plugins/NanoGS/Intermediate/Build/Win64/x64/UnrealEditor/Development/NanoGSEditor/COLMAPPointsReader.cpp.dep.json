@@ -1,0 +1,16 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\colmappointsreader.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\intermediate\\build\\win64\\x64\\dreamservicecentereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\nanogseditor\\definitions.nanogseditor.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogseditor\\private\\colmappointsreader.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\source\\nanogs\\public\\gaussiandatatypes.h",
+            "c:\\users\\34670\\documents\\unreal projects\\dreamservicecenter\\plugins\\nanogs\\intermediate\\build\\win64\\unrealeditor\\inc\\nanogs\\uht\\gaussiandatatypes.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

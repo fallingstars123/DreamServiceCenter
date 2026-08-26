@@ -1,0 +1,19 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.NanoGSEditor.cpp.obj": [
+			"ActorFactoryGaussianSplat.gen.cpp.obj",
+			"GaussianSplatAssetFactory.gen.cpp.obj",
+			"GaussianSplatThumbnailRenderer.gen.cpp.obj",
+			"NanoGSEditor.init.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"ActorFactoryGaussianSplat.cpp.obj",
+			"COLMAPPointsReader.cpp.obj",
+			"GaussianSplatAssetTypeActions.cpp.obj",
+			"GaussianSplatThumbnailRenderer.cpp.obj",
+			"NanoGSEditorModule.cpp.obj",
+			"GaussianSplatAssetFactory.cpp.obj",
+			"SPZFileReader.cpp.obj"
+		]
+	}
+}

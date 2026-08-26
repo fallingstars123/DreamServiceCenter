@@ -1,0 +1,28 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.NanoGS.cpp.obj": [
+			"GaussianClusterTypes.gen.cpp.obj",
+			"GaussianDataTypes.gen.cpp.obj",
+			"GaussianSplatActor.gen.cpp.obj",
+			"GaussianSplatAsset.gen.cpp.obj",
+			"GaussianSplatComponent.gen.cpp.obj",
+			"GaussianSplatSelectionBoxComponent.gen.cpp.obj",
+			"NanoGS.init.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"GaussianClusterBuilder.cpp.obj",
+			"GaussianGlobalAccumulator.cpp.obj",
+			"GaussianSplatAsset.cpp.obj",
+			"GaussianSplatRenderData.cpp.obj",
+			"GaussianSplatViewExtension.cpp.obj",
+			"NanoGS.cpp.obj",
+			"PLYFileReader.cpp.obj",
+			"GaussianSplatActor.cpp.obj",
+			"GaussianSplatComponent.cpp.obj",
+			"GaussianSplatRenderer.cpp.obj",
+			"GaussianSplatSceneProxy.cpp.obj",
+			"GaussianSplatSelectionBoxComponent.cpp.obj",
+			"GaussianSplatShaders.cpp.obj"
+		]
+	}
+}
