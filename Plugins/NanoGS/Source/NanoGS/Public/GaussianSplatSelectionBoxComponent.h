@@ -9,8 +9,8 @@
 UENUM(BlueprintType)
 enum class EGaussianSplatSelectionBoxMode : uint8
 {
-	Cull UMETA(DisplayName = "剔除"),
-	Keep UMETA(DisplayName = "保留")
+	Cull UMETA(DisplayName = "Cull"),
+	Keep UMETA(DisplayName = "Keep")
 };
 
 /**
@@ -61,7 +61,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Selection Box", meta = (DisplayName = "Transform"))
 	FTransform SelectionBoxTransform = FTransform::Identity;
 
-	/** Internal mode; the owning array decides whether this is a cull or keep box. */
+	/** Internal mode controlled by the owning Gaussian Splat actor. */
 	UPROPERTY()
 	EGaussianSplatSelectionBoxMode SelectionMode = EGaussianSplatSelectionBoxMode::Cull;
 

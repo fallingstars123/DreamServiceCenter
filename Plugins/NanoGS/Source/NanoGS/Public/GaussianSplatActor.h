@@ -34,12 +34,17 @@ public:
 	TObjectPtr<UGaussianSplatComponent> GaussianSplatComponent;
 
 	/** Enable all cull boxes. Splats inside any cull box are hidden. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gaussian Splatting|Selection Boxes", meta = (DisplayName = "启用剔除选区"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gaussian Splatting|Selection Boxes", meta = (DisplayName = "Enable Cull Selection Boxes"))
 	bool bEnableCullSelectionBoxes = false;
 
-	/** Enable all keep boxes. Their union is retained and wins over overlapping cull boxes. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gaussian Splatting|Selection Boxes", meta = (DisplayName = "启用保留选区"))
+	/** Enable all keep boxes. Their union is retained; cull boxes can remove points inside it. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gaussian Splatting|Selection Boxes", meta = (DisplayName = "Enable Keep Selection Boxes"))
 	bool bEnableKeepSelectionBoxes = false;
+
+	/** Choose which operation wins where cull and keep boxes overlap. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gaussian Splatting|Selection Boxes",
+		meta = (DisplayName = "Overlap Priority", EditCondition = "bEnableCullSelectionBoxes && bEnableKeepSelectionBoxes"))
+	EGaussianSplatSelectionBoxMode SelectionBoxOverlapPriority = EGaussianSplatSelectionBoxMode::Cull;
 
 	/** Recreate render data after a selection box is moved, resized, added, or removed. */
 	void NotifySelectionBoxesChanged();
@@ -51,11 +56,11 @@ public:
 
 private:
 	UPROPERTY(EditInstanceOnly, Instanced, Category = "Gaussian Splatting|Selection Boxes",
-		meta = (DisplayName = "剔除选区列表", TitleProperty = "SelectionBoxName", NoElementDuplicate))
+		meta = (DisplayName = "Cull Selection Boxes", TitleProperty = "SelectionBoxName", NoElementDuplicate))
 	TArray<TObjectPtr<UGaussianSplatSelectionBoxComponent>> CullSelectionBoxes;
 
 	UPROPERTY(EditInstanceOnly, Instanced, Category = "Gaussian Splatting|Selection Boxes",
-		meta = (DisplayName = "保留选区列表", TitleProperty = "SelectionBoxName", NoElementDuplicate))
+		meta = (DisplayName = "Keep Selection Boxes", TitleProperty = "SelectionBoxName", NoElementDuplicate))
 	TArray<TObjectPtr<UGaussianSplatSelectionBoxComponent>> KeepSelectionBoxes;
 
 	UGaussianSplatSelectionBoxComponent* CreateSelectionBox(EGaussianSplatSelectionBoxMode Mode, int32 Index);

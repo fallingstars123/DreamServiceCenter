@@ -10,6 +10,7 @@
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianClusterBuilder.cpp"
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianGlobalAccumulator.cpp"
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatAsset.cpp"
+#include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatComponent.cpp"
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderData.cpp"
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatViewExtension.cpp"
 #include "C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/NanoGS.cpp"

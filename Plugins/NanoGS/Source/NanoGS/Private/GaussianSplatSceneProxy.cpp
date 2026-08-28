@@ -699,6 +699,7 @@ FGaussianSplatSceneProxy::FGaussianSplatSceneProxy(const UGaussianSplatComponent
 	{
 		return;
 	}
+	SelectionBoxOverlapPriority = static_cast<uint32>(SplatActor->SelectionBoxOverlapPriority);
 
 	auto CopySelectionBoxes = [](const TArray<TObjectPtr<UGaussianSplatSelectionBoxComponent>>& Source,
 		TArray<FGaussianSplatSelectionBoxRenderData>& Destination)
@@ -867,6 +868,7 @@ void FGaussianSplatSceneProxy::CreateRenderThreadResources(FRHICommandListBase& 
 	{
 		GPUResources = new FGaussianSplatGPUResources();
 		GPUResources->Initialize(CachedAsset);
+		GPUResources->SelectionBoxOverlapPriority = SelectionBoxOverlapPriority;
 
 		auto CopySelectionBoxRenderData = [](const TArray<FGaussianSplatSelectionBoxRenderData>& Source,
 			uint32& OutCount,

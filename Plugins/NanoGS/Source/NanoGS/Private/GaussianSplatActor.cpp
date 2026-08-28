@@ -15,6 +15,7 @@ AGaussianSplatActor::AGaussianSplatActor()
 void AGaussianSplatActor::PostLoad()
 {
 	Super::PostLoad();
+
 	RemoveInvalidSelectionBoxes();
 
 	auto PrepareLoadedBoxes = [](TArray<TObjectPtr<UGaussianSplatSelectionBoxComponent>>& Boxes,
@@ -58,7 +59,8 @@ void AGaussianSplatActor::PostEditChangeProperty(FPropertyChangedEvent& Property
 		SynchronizeSelectionBoxes();
 	}
 	else if (PropertyName == GET_MEMBER_NAME_CHECKED(AGaussianSplatActor, bEnableCullSelectionBoxes) ||
-		PropertyName == GET_MEMBER_NAME_CHECKED(AGaussianSplatActor, bEnableKeepSelectionBoxes))
+		PropertyName == GET_MEMBER_NAME_CHECKED(AGaussianSplatActor, bEnableKeepSelectionBoxes) ||
+		PropertyName == GET_MEMBER_NAME_CHECKED(AGaussianSplatActor, SelectionBoxOverlapPriority))
 	{
 		NotifySelectionBoxesChanged();
 	}

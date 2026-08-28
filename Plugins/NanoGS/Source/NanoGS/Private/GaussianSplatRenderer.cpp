@@ -114,6 +114,7 @@ static void SetSelectionBoxParameters(
 {
 	Parameters.CullSelectionBoxCount = GPUResources->CullSelectionBoxCount;
 	Parameters.KeepSelectionBoxCount = GPUResources->KeepSelectionBoxCount;
+	Parameters.SelectionBoxOverlapPriority = GPUResources->SelectionBoxOverlapPriority;
 	for (uint32 Index = 0; Index < FGaussianSplatGPUResources::MaxSelectionBoxesPerMode; ++Index)
 	{
 		Parameters.CullSelectionBoxCenters[Index] = GPUResources->CullSelectionBoxes[Index].Center;

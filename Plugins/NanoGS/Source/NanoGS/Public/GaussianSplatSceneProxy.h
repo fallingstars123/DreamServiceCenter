@@ -351,6 +351,7 @@ public:
 	/** World-space oriented selection boxes copied from the actor when the proxy is built. */
 	uint32 CullSelectionBoxCount = 0;
 	uint32 KeepSelectionBoxCount = 0;
+	uint32 SelectionBoxOverlapPriority = 0; // 0 = Cull, 1 = Keep
 	FGaussianSplatSelectionBoxRenderData CullSelectionBoxes[MaxSelectionBoxesPerMode];
 	FGaussianSplatSelectionBoxRenderData KeepSelectionBoxes[MaxSelectionBoxesPerMode];
 };
@@ -446,6 +447,7 @@ private:
 
 	TArray<FGaussianSplatSelectionBoxRenderData> CullSelectionBoxes;
 	TArray<FGaussianSplatSelectionBoxRenderData> KeepSelectionBoxes;
+	uint32 SelectionBoxOverlapPriority = 0; // 0 = Cull, 1 = Keep
 
 #if WITH_EDITOR
 	/** Cached hit proxy created in CreateHitProxies, used for editor viewport click selection. */

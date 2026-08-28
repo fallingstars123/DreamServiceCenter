@@ -37,9 +37,12 @@
 /NOIMPLIB
 /NOEXP
 /NATVIS:"../Intermediate/Build/Win64/x64/UnrealEditor/Development/RenderCore/RenderCore.natvis"
-"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Intermediate/Build/Win64/x64/DreamServiceCenterEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_6.h.obj"
-"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/Module.NanoGS.cpp.obj"
-"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/Default.rc2.res"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Intermediate/Build/Win64/x64/DreamServiceCenterEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_6.h.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/Module.NanoGS.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/GaussianSplatActor.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/GaussianSplatSceneProxy.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/GaussianSplatSelectionBoxComponent.cpp.obj"
+"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Intermediate/Build/Win64/x64/UnrealEditor/Development/NanoGS/Default.rc2.res"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Slate/UnrealEditor-Slate.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/SlateCore/UnrealEditor-SlateCore.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Core/UnrealEditor-Core.lib"
@@ -74,6 +77,6 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Binaries/Win64/UnrealEditor-NanoGS.dll"
-/PDB:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8 5.8/Plugins/NanoGS/Binaries/Win64/UnrealEditor-NanoGS.pdb"
+/OUT:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Binaries/Win64/UnrealEditor-NanoGS.dll"
+/PDB:"C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Binaries/Win64/UnrealEditor-NanoGS.pdb"
 /ignore:4078

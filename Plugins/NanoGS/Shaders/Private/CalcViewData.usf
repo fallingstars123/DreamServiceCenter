@@ -45,9 +45,11 @@ uint RenderMode;       // 0 = Gaussian, 1 = fixed-size point cloud
 float PointSize;       // Point diameter in screen pixels
 
 // Per-actor world-space oriented selection boxes. Multiple boxes of the same
-// mode are unioned. Keep boxes are evaluated first and win in overlaps.
+// mode are unioned. Cull boxes win in overlaps so they can remove artifacts
+// from inside a larger keep region.
 uint CullSelectionBoxCount;
 uint KeepSelectionBoxCount;
+uint SelectionBoxOverlapPriority; // 0 = Cull, 1 = Keep
 float4 CullSelectionBoxCenters[16];
 float4 CullSelectionBoxAxisX[16];
 float4 CullSelectionBoxAxisY[16];
@@ -167,11 +169,13 @@ void ProcessSplat(uint splatIndex, uint outputIndex, uint selectedClusterID, uin
 	// Transform to world space
 	float4 worldPos = mul(float4(localPos, 1.0), LocalToWorld);
 
-	// Keep is an inclusion mask (union of all keep boxes). A kept point is
-	// never removed by a cull box, so keep has explicit overlap priority.
+	// Keep is an inclusion mask (union of all keep boxes). The selected overlap
+	// priority decides whether a cull box can subtract from a kept region.
 	const bool bInsideKeep = IsPointInsideAnyKeepBox(worldPos.xyz);
+	const bool bInsideCull = IsPointInsideAnyCullBox(worldPos.xyz);
+	const bool bCullWinsOverlap = SelectionBoxOverlapPriority == 0;
 	if ((KeepSelectionBoxCount > 0 && !bInsideKeep) ||
-		(!bInsideKeep && IsPointInsideAnyCullBox(worldPos.xyz)))
+		(bInsideCull && (bCullWinsOverlap || !bInsideKeep)))
 	{
 		WriteInvalidSplat(outputIndex, selectedClusterID, selectedLODLevel);
 		return;

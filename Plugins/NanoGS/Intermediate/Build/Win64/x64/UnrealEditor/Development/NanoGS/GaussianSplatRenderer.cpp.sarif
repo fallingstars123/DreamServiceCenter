@@ -44,7 +44,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 191,
+                                    "startLine": 192,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
@@ -69,7 +69,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 193,
+                                    "startLine": 194,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
@@ -94,7 +94,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 199,
+                                    "startLine": 200,
                                     "startColumn": 48,
                                     "snippet": {
                                         "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
@@ -119,7 +119,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 834,
+                                    "startLine": 835,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
@@ -144,7 +144,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 836,
+                                    "startLine": 837,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
@@ -169,7 +169,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 842,
+                                    "startLine": 843,
                                     "startColumn": 48,
                                     "snippet": {
                                         "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
@@ -194,7 +194,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 982,
+                                    "startLine": 983,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
@@ -219,7 +219,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 984,
+                                    "startLine": 985,
                                     "startColumn": 56,
                                     "snippet": {
                                         "text": "\tParameters.WorldToView = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
@@ -244,7 +244,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 990,
+                                    "startLine": 991,
                                     "startColumn": 48,
                                     "snippet": {
                                         "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
@@ -269,7 +269,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1434,
+                                    "startLine": 1435,
                                     "startColumn": 60,
                                     "snippet": {
                                         "text": "\tParameters.WorldToClip     = FMatrix44f(View.ViewMatrices.GetViewMatrix() * View.ViewMatrices.GetProjectionNoAAMatrix());"
@@ -294,7 +294,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1436,
+                                    "startLine": 1437,
                                     "startColumn": 60,
                                     "snippet": {
                                         "text": "\tParameters.WorldToView     = FMatrix44f(View.ViewMatrices.GetViewMatrix());"
@@ -319,7 +319,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1442,
+                                    "startLine": 1443,
                                     "startColumn": 48,
                                     "snippet": {
                                         "text": "\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"
@@ -344,7 +344,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1873,
+                                    "startLine": 1874,
                                     "startColumn": 42,
                                     "snippet": {
                                         "text": "\t\tExtractFrustumPlanes(View.ViewMatrices.GetViewProjectionMatrix(), FrustumPlanes);"
@@ -369,7 +369,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1887,
+                                    "startLine": 1888,
                                     "startColumn": 60,
                                     "snippet": {
                                         "text": "\t\tCullingParams.WorldToClip = FMatrix44f(View.ViewMatrices.GetViewProjectionMatrix());"
@@ -394,7 +394,7 @@
                                     "uri": "file:///C:/Users/34670/Documents/Unreal Projects/DreamServiceCenter 5.8/Plugins/NanoGS/Source/NanoGS/Private/GaussianSplatRenderer.cpp"
                                 },
                                 "region": {
-                                    "startLine": 1900,
+                                    "startLine": 1901,
                                     "startColumn": 49,
                                     "snippet": {
                                         "text": "\t\tconst FMatrix& ProjMatrix = View.ViewMatrices.GetProjectionMatrix();"

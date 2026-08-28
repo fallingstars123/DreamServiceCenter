@@ -38,9 +38,9 @@ struct UHT_STATICS
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Type_MetaData[] = {
 		{ "BlueprintType", "true" },
-		{ "Cull.DisplayName", "\xe5\x89\x94\xe9\x99\xa4" },
+		{ "Cull.DisplayName", "Cull" },
 		{ "Cull.Name", "EGaussianSplatSelectionBoxMode::Cull" },
-		{ "Keep.DisplayName", "\xe4\xbf\x9d\xe7\x95\x99" },
+		{ "Keep.DisplayName", "Keep" },
 		{ "Keep.Name", "EGaussianSplatSelectionBoxMode::Keep" },
 		{ "ModuleRelativePath", "Public/GaussianSplatSelectionBoxComponent.h" },
 	};
@@ -130,11 +130,11 @@ struct UHT_STATICS
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SelectionMode_MetaData[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Internal mode; the owning array decides whether this is a cull or keep box. */" },
+		{ "Comment", "/** Internal mode controlled by the owning Gaussian Splat actor. */" },
 #endif
 		{ "ModuleRelativePath", "Public/GaussianSplatSelectionBoxComponent.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Internal mode; the owning array decides whether this is a cull or keep box." },
+		{ "ToolTip", "Internal mode controlled by the owning Gaussian Splat actor." },
 #endif
 	};
 #endif // WITH_METADATA
@@ -157,7 +157,7 @@ struct UHT_STATICS
 const UECodeGen_Private::FNamePropertyParams UHT_STATICS::NewProp_SelectionBoxName = { "SelectionBoxName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, nullptr, nullptr, 1, STRUCT_OFFSET(UGaussianSplatSelectionBoxComponent, SelectionBoxName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectionBoxName_MetaData), NewProp_SelectionBoxName_MetaData) };
 const UECodeGen_Private::FStructPropertyParams UHT_STATICS::NewProp_SelectionBoxTransform = { "SelectionBoxTransform", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, nullptr, nullptr, 1, STRUCT_OFFSET(UGaussianSplatSelectionBoxComponent, SelectionBoxTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectionBoxTransform_MetaData), NewProp_SelectionBoxTransform_MetaData) };
 const UECodeGen_Private::FBytePropertyParams UHT_STATICS::NewProp_SelectionMode_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams UHT_STATICS::NewProp_SelectionMode = { "SelectionMode", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Enum, nullptr, nullptr, 1, STRUCT_OFFSET(UGaussianSplatSelectionBoxComponent, SelectionMode), Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectionMode_MetaData), NewProp_SelectionMode_MetaData) }; // c9d3f1e12771a1e231be6c4855bc887ffe27d5b4
+const UECodeGen_Private::FEnumPropertyParams UHT_STATICS::NewProp_SelectionMode = { "SelectionMode", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Enum, nullptr, nullptr, 1, STRUCT_OFFSET(UGaussianSplatSelectionBoxComponent, SelectionMode), Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectionMode_MetaData), NewProp_SelectionMode_MetaData) }; // e718b1955c66ce57e4f662dfeb93895c7c857d7b
 const UECodeGen_Private::FPropertyParamsBase* const UHT_STATICS::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_SelectionBoxName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_SelectionBoxTransform,
@@ -232,13 +232,13 @@ UGaussianSplatSelectionBoxComponent::~UGaussianSplatSelectionBoxComponent() {}
 struct UHT_STATICS
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode, TEXT("EGaussianSplatSelectionBoxMode"), &ZRIE_EGaussianSplatSelectionBoxMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3386110433U) },
+		{ Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode, TEXT("EGaussianSplatSelectionBoxMode"), &ZRIE_EGaussianSplatSelectionBoxMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3877155221U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGaussianSplatSelectionBoxComponent, TEXT("UGaussianSplatSelectionBoxComponent"), &Z_Registration_Info_UClass_UGaussianSplatSelectionBoxComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGaussianSplatSelectionBoxComponent), 692164972U) },
+		{ Z_Construct_UClass_UGaussianSplatSelectionBoxComponent, TEXT("UGaussianSplatSelectionBoxComponent"), &Z_Registration_Info_UClass_UGaussianSplatSelectionBoxComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGaussianSplatSelectionBoxComponent), 3254648524U) },
 	};
 }; // UHT_STATICS 
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_34670_Documents_Unreal_Projects_DreamServiceCenter_5_8_Plugins_NanoGS_Source_NanoGS_Public_GaussianSplatSelectionBoxComponent_h__Script_NanoGS_e356bda07f403133ac812fe6255d3c91a4163557{
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_34670_Documents_Unreal_Projects_DreamServiceCenter_5_8_Plugins_NanoGS_Source_NanoGS_Public_GaussianSplatSelectionBoxComponent_h__Script_NanoGS_960efe5cdcab029ed1156f78f9433877bcdb46ff{
 	TEXT("/Script/NanoGS"),
 	UHT_STATICS::ClassInfo, UE_ARRAY_COUNT(UHT_STATICS::ClassInfo),
 	nullptr, 0,

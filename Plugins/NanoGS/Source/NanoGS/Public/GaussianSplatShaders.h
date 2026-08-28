@@ -54,9 +54,10 @@ class FGaussianSplatCalcViewDataCS : public FGlobalShader
 		SHADER_PARAMETER(float, SplatScale)
 		SHADER_PARAMETER(uint32, RenderMode)
 		SHADER_PARAMETER(float, PointSize)
-		// World-space oriented selection boxes. Keep boxes have priority over cull boxes.
+		// World-space oriented selection boxes with configurable overlap priority.
 		SHADER_PARAMETER(uint32, CullSelectionBoxCount)
 		SHADER_PARAMETER(uint32, KeepSelectionBoxCount)
+		SHADER_PARAMETER(uint32, SelectionBoxOverlapPriority) // 0 = Cull, 1 = Keep
 		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxCenters, [16])
 		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxAxisX, [16])
 		SHADER_PARAMETER_ARRAY(FVector4f, CullSelectionBoxAxisY, [16])

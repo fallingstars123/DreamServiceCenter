@@ -17,6 +17,7 @@ ENGINE_API UClass* Z_Construct_UClass_AActor(ETypeConstructPhase);
 
 // ********** Begin Same Module References *********************************************************
 UPackage* Z_Construct_UPackage__Script_NanoGS(ETypeConstructPhase);
+NANOGS_API UEnum* Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode(ETypeConstructPhase);
 NANOGS_API UClass* Z_Construct_UClass_AGaussianSplatActor(ETypeConstructPhase);
 NANOGS_API UClass* Z_Construct_UClass_AGaussianSplatActor(ETypeConstructPhase);
 NANOGS_API UClass* Z_Construct_UClass_UGaussianSplatComponent(ETypeConstructPhase);
@@ -58,7 +59,7 @@ struct UHT_STATICS
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Enable all cull boxes. Splats inside any cull box are hidden. */" },
 #endif
-		{ "DisplayName", "\xe5\x90\xaf\xe7\x94\xa8\xe5\x89\x94\xe9\x99\xa4\xe9\x80\x89\xe5\x8c\xba" },
+		{ "DisplayName", "Enable Cull Selection Boxes" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 #if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Enable all cull boxes. Splats inside any cull box are hidden." },
@@ -67,17 +68,29 @@ struct UHT_STATICS
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bEnableKeepSelectionBoxes_MetaData[] = {
 		{ "Category", "Gaussian Splatting|Selection Boxes" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Enable all keep boxes. Their union is retained and wins over overlapping cull boxes. */" },
+		{ "Comment", "/** Enable all keep boxes. Their union is retained; cull boxes can remove points inside it. */" },
 #endif
-		{ "DisplayName", "\xe5\x90\xaf\xe7\x94\xa8\xe4\xbf\x9d\xe7\x95\x99\xe9\x80\x89\xe5\x8c\xba" },
+		{ "DisplayName", "Enable Keep Selection Boxes" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Enable all keep boxes. Their union is retained and wins over overlapping cull boxes." },
+		{ "ToolTip", "Enable all keep boxes. Their union is retained; cull boxes can remove points inside it." },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SelectionBoxOverlapPriority_MetaData[] = {
+		{ "Category", "Gaussian Splatting|Selection Boxes" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/** Choose which operation wins where cull and keep boxes overlap. */" },
+#endif
+		{ "DisplayName", "Overlap Priority" },
+		{ "EditCondition", "bEnableCullSelectionBoxes && bEnableKeepSelectionBoxes" },
+		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Choose which operation wins where cull and keep boxes overlap." },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CullSelectionBoxes_Inner_MetaData[] = {
 		{ "Category", "Gaussian Splatting|Selection Boxes" },
-		{ "DisplayName", "\xe5\x89\x94\xe9\x99\xa4\xe9\x80\x89\xe5\x8c\xba\xe5\x88\x97\xe8\xa1\xa8" },
+		{ "DisplayName", "Cull Selection Boxes" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 		{ "NoElementDuplicate", "" },
@@ -85,7 +98,7 @@ struct UHT_STATICS
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CullSelectionBoxes_MetaData[] = {
 		{ "Category", "Gaussian Splatting|Selection Boxes" },
-		{ "DisplayName", "\xe5\x89\x94\xe9\x99\xa4\xe9\x80\x89\xe5\x8c\xba\xe5\x88\x97\xe8\xa1\xa8" },
+		{ "DisplayName", "Cull Selection Boxes" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 		{ "NoElementDuplicate", "" },
@@ -93,7 +106,7 @@ struct UHT_STATICS
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_KeepSelectionBoxes_Inner_MetaData[] = {
 		{ "Category", "Gaussian Splatting|Selection Boxes" },
-		{ "DisplayName", "\xe4\xbf\x9d\xe7\x95\x99\xe9\x80\x89\xe5\x8c\xba\xe5\x88\x97\xe8\xa1\xa8" },
+		{ "DisplayName", "Keep Selection Boxes" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 		{ "NoElementDuplicate", "" },
@@ -101,7 +114,7 @@ struct UHT_STATICS
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_KeepSelectionBoxes_MetaData[] = {
 		{ "Category", "Gaussian Splatting|Selection Boxes" },
-		{ "DisplayName", "\xe4\xbf\x9d\xe7\x95\x99\xe9\x80\x89\xe5\x8c\xba\xe5\x88\x97\xe8\xa1\xa8" },
+		{ "DisplayName", "Keep Selection Boxes" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/GaussianSplatActor.h" },
 		{ "NoElementDuplicate", "" },
@@ -121,6 +134,8 @@ struct UHT_STATICS
 		((AGaussianSplatActor*)Obj)->bEnableKeepSelectionBoxes = 1;
 	}
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bEnableKeepSelectionBoxes;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_SelectionBoxOverlapPriority_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_SelectionBoxOverlapPriority;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CullSelectionBoxes_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_CullSelectionBoxes;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_KeepSelectionBoxes_Inner;
@@ -138,6 +153,8 @@ struct UHT_STATICS
 const UECodeGen_Private::FObjectPropertyParams UHT_STATICS::NewProp_GaussianSplatComponent = { "GaussianSplatComponent", nullptr, (EPropertyFlags)0x01140000000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, nullptr, nullptr, 1, STRUCT_OFFSET(AGaussianSplatActor, GaussianSplatComponent), Z_Construct_UClass_UGaussianSplatComponent, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GaussianSplatComponent_MetaData), NewProp_GaussianSplatComponent_MetaData) };
 const UECodeGen_Private::FBoolPropertyParams UHT_STATICS::NewProp_bEnableCullSelectionBoxes = { "bEnableCullSelectionBoxes", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, nullptr, nullptr, 1, sizeof(bool), sizeof(AGaussianSplatActor), &UHT_STATICS::NewProp_bEnableCullSelectionBoxes_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEnableCullSelectionBoxes_MetaData), NewProp_bEnableCullSelectionBoxes_MetaData) };
 const UECodeGen_Private::FBoolPropertyParams UHT_STATICS::NewProp_bEnableKeepSelectionBoxes = { "bEnableKeepSelectionBoxes", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, nullptr, nullptr, 1, sizeof(bool), sizeof(AGaussianSplatActor), &UHT_STATICS::NewProp_bEnableKeepSelectionBoxes_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEnableKeepSelectionBoxes_MetaData), NewProp_bEnableKeepSelectionBoxes_MetaData) };
+const UECodeGen_Private::FBytePropertyParams UHT_STATICS::NewProp_SelectionBoxOverlapPriority_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams UHT_STATICS::NewProp_SelectionBoxOverlapPriority = { "SelectionBoxOverlapPriority", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, nullptr, nullptr, 1, STRUCT_OFFSET(AGaussianSplatActor, SelectionBoxOverlapPriority), Z_Construct_UEnum_NanoGS_EGaussianSplatSelectionBoxMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectionBoxOverlapPriority_MetaData), NewProp_SelectionBoxOverlapPriority_MetaData) }; // e718b1955c66ce57e4f662dfeb93895c7c857d7b
 const UECodeGen_Private::FObjectPropertyParams UHT_STATICS::NewProp_CullSelectionBoxes_Inner = { "CullSelectionBoxes", nullptr, (EPropertyFlags)0x0106000000080008, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGaussianSplatSelectionBoxComponent, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CullSelectionBoxes_Inner_MetaData), NewProp_CullSelectionBoxes_Inner_MetaData) };
 const UECodeGen_Private::FArrayPropertyParams UHT_STATICS::NewProp_CullSelectionBoxes = { "CullSelectionBoxes", nullptr, (EPropertyFlags)0x0144008000000809, UECodeGen_Private::EPropertyGenFlags::Array, nullptr, nullptr, 1, STRUCT_OFFSET(AGaussianSplatActor, CullSelectionBoxes), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CullSelectionBoxes_MetaData), NewProp_CullSelectionBoxes_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams UHT_STATICS::NewProp_KeepSelectionBoxes_Inner = { "KeepSelectionBoxes", nullptr, (EPropertyFlags)0x0106000000080008, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGaussianSplatSelectionBoxComponent, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_KeepSelectionBoxes_Inner_MetaData), NewProp_KeepSelectionBoxes_Inner_MetaData) };
@@ -146,6 +163,8 @@ const UECodeGen_Private::FPropertyParamsBase* const UHT_STATICS::PropPointers[] 
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_GaussianSplatComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_bEnableCullSelectionBoxes,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_bEnableKeepSelectionBoxes,
+	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_SelectionBoxOverlapPriority_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_SelectionBoxOverlapPriority,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_CullSelectionBoxes_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_CullSelectionBoxes,
 	(const UECodeGen_Private::FPropertyParamsBase*)&UHT_STATICS::NewProp_KeepSelectionBoxes_Inner,
@@ -219,10 +238,10 @@ AGaussianSplatActor::~AGaussianSplatActor() {}
 struct UHT_STATICS
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AGaussianSplatActor, TEXT("AGaussianSplatActor"), &Z_Registration_Info_UClass_AGaussianSplatActor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGaussianSplatActor), 2426970606U) },
+		{ Z_Construct_UClass_AGaussianSplatActor, TEXT("AGaussianSplatActor"), &Z_Registration_Info_UClass_AGaussianSplatActor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGaussianSplatActor), 2812931841U) },
 	};
 }; // UHT_STATICS 
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_34670_Documents_Unreal_Projects_DreamServiceCenter_5_8_Plugins_NanoGS_Source_NanoGS_Public_GaussianSplatActor_h__Script_NanoGS_0173c8c3cd9f6471794c8420a0d5e698451d095c{
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_34670_Documents_Unreal_Projects_DreamServiceCenter_5_8_Plugins_NanoGS_Source_NanoGS_Public_GaussianSplatActor_h__Script_NanoGS_32d9d335a2c9b01561065476ed3f78fae4d7ff6e{
 	TEXT("/Script/NanoGS"),
 	UHT_STATICS::ClassInfo, UE_ARRAY_COUNT(UHT_STATICS::ClassInfo),
 	nullptr, 0,
