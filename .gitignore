@@ -4,15 +4,14 @@ Intermediate/
 Saved/
 .vs/
 
+# Unreal generated folders inside plugins
+**/Binaries/
+**/Intermediate/
+**/Saved/
+
 # Local editor and AI assistant settings
 .codex/
 .cursor/
 .gemini/
 .vscode/
 .mcp.json
-
-# Track compiled plugin artifacts even though project build outputs stay ignored.
-!/Plugins/**/Binaries/
-!/Plugins/**/Binaries/**
-!/Plugins/**/Intermediate/
-!/Plugins/**/Intermediate/**

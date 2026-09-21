@@ -1,0 +1,19 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Letter Inspection",
+	"Description": "Reusable runtime letter inspection, presentation, and description UI framework.",
+	"Category": "Gameplay",
+	"CreatedBy": "STU_Wu",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "LetterInspection",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
